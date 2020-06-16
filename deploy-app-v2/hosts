@@ -1,0 +1,11 @@
+[local]
+localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3 gather_facts=False
+
+[k8s-master]
+
+
+[k8s-workers]
+
+[k8s-workers:vars]
+K8S_MASTER_NODE_IP=
+K8S_API_SECURE_PORT=6443

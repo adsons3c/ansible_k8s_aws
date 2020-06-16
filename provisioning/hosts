@@ -1,0 +1,19 @@
+[local]
+localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3 gather_facts=False
+
+[server_public_ip]
+
+
+
+
+[server_private_ip]
+
+
+
+
+[worker_public_ip]
+
+
+
+
+[worker_private_ip]

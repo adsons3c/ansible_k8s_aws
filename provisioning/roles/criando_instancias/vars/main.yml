@@ -1,0 +1,12 @@
+---
+# vars file for criando_instancias
+server_instance_type: t2.medium
+workers_instance_type: t2.micro
+sec_group_name: ansible_curso
+image: ami-085925f297f89fce1
+keypair: teste
+region: us-east-1
+count_server: 1
+count_workers: 2
+profile: ansible_curso
+hostpath: "./hosts"

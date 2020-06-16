@@ -1,0 +1,35 @@
+- name: Download docker
+  get_url:
+    url: "{{ docker_url }}"
+    dest: /tmp/get_docker.sh
+    mode: 0775
+  ignore_errors: true
+  register: download_docker
+
+- name: Instalando Docker
+  shell:
+    /tmp/get_docker.sh
+  when:
+    - download_docker.failed|bool == false
+  register: install_docker
+  notify: Restart Docker
+
+- name: Adicionando as chaves do repo do k8s
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Adicionando o repo do k8s
+  apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Instalando os pacotes kubeadm, kubelet e kubectl
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - kubeadm
+    - kubelet
+    - kubectl
+  notify: Restart Kubelet
